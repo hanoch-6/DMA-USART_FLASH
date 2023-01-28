@@ -1,0 +1,10 @@
+*~
+*.o
+*.d
+*.crf
+*.bin
+*.elf
+*.hex
+*.map
+*.project
+*.vscode
