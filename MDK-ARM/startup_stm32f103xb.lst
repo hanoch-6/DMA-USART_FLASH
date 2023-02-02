@@ -461,13 +461,13 @@ ARM Macro Assembler    Page 8
 
               00000000 
               00000000 
-Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
-ork --depend=dma+usart\startup_stm32f103xb.d -odma+usart\startup_stm32f103xb.o 
--I.\RTE\_DMA_USART -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include -IC:\Kei
-l_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include --predefine="__MICROLIB S
-ETA 1" --predefine="__UVISION_VERSION SETA 523" --predefine="_RTE_ SETA 1" --pr
-edefine="STM32F10X_MD SETA 1" --list=startup_stm32f103xb.lst startup_stm32f103x
-b.s
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M3 --depe
+nd=dma+usart\startup_stm32f103xb.d -odma+usart\startup_stm32f103xb.o -I.\RTE\_D
+MA_USART -IC:\Users\Hanoch\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\I
+nclude -IC:\Users\Hanoch\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.0\Devic
+e\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 5
+38" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" --predefine="_
+RTE_ SETA 1" --list=startup_stm32f103xb.lst startup_stm32f103xb.s
 
 
 

@@ -36,7 +36,7 @@
 
 #define BUFFERSIZE 255
 uint8_t ReceiveBuff[BUFFERSIZE];
-uint8_t Rx_len;
+uint8_t RX_len;
 volatile uint8_t receive_end_flag;
 extern DMA_HandleTypeDef hdma_usart1_rx;
 extern UART_HandleTypeDef huart1;
@@ -51,9 +51,9 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 {
   if (huart == &huart1)
   {
-    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13); // 引脚C13电平反转
+    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13); //     C13  ?  ?
     // flag=1;
-  } // 判断是否是串口1中断
+  } //  ��  ?  ?   1 �� 
 }
 /* Private function prototypes -----------------------------------------------*/
 
@@ -70,21 +70,23 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_USART1_UART_Init();
-  __HAL_UART_ENABLE_IT(&huart1, UART_IT_IDLE);//开启串口空闲中断
-
-  HAL_UART_Receive_DMA(&huart1, ReceiveBuff, BUFFERSIZE);//串口DMA数据接收
-
+  __HAL_UART_ENABLE_IT(&huart1, UART_IT_IDLE); //        ?    �� 
   MX_USART2_UART_Init();
+  printf("I LOVE YOU\r\n");
   while (1)
   {
-    
+   // if (!receive_end_flag)
+    //{
+   //   for(int i = 0;i<strlen(ReceiveBuff);i++)
+   //     printf("RECEIVE DATA  %02d\r\n",ReceiveBuff[i]);
+    //}
   }
   /* USER CODE END 3 */
 }
 
 /**
- * @brief 时钟初始化
- * 
+ * @brief ? ? ?  
+ *
  */
 void SystemClock_Config(void)
 {

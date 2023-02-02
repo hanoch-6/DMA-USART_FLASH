@@ -6,6 +6,7 @@
 "dma+usart\usart.o"
 "dma+usart\stm32f1xx_it.o"
 "dma+usart\stm32f1xx_hal_msp.o"
+"dma+usart\stm_flash.o"
 "dma+usart\stm32f1xx_hal_gpio_ex.o"
 "dma+usart\stm32f1xx_hal_tim.o"
 "dma+usart\stm32f1xx_hal_tim_ex.o"
@@ -22,6 +23,6 @@
 "dma+usart\stm32f1xx_hal_exti.o"
 "dma+usart\system_stm32f1xx.o"
 --library_type=microlib --strict --scatter "DMA+USART\DMA+USART.sct"
---summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "DMA+USART.map" -o DMA+USART\DMA+USART.axf
