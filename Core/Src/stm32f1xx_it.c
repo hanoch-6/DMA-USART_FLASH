@@ -63,7 +63,7 @@ extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef huart2;
 extern uint8_t RX_len;
 extern uint8_t receive_end_flag;
-extern uint8_t ReceiveBuff[BUFFERSIZE];
+extern uint8_t UartReceiveBuff[BUFFERSIZE];
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -252,9 +252,9 @@ void USART1_IRQHandler(void)
       HAL_UART_DMAStop(&huart1);                           // 停止DMA接收
       temp = __HAL_DMA_GET_COUNTER(&hdma_usart1_rx);       // 获取DMA当前还有多少未填充
       RX_len = BUFFERSIZE - temp;                          // 计算串口接收到的数据个数
-      HAL_UART_Transmit_DMA(&huart1, ReceiveBuff, RX_len); // 发送数据
+      HAL_UART_Transmit_DMA(&huart1, UartReceiveBuff, RX_len); // 发送数据
       RX_len = 0;                                          // 接收数据长度清零
-      HAL_UART_Receive_DMA(&huart1, ReceiveBuff, BUFFERSIZE);
+      HAL_UART_Receive_DMA(&huart1, UartReceiveBuff, BUFFERSIZE);
     }
   }
   /* USER CODE BEGIN USART1_IRQn 1 */

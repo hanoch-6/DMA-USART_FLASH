@@ -35,7 +35,7 @@
 #endif /* __GNUC__ */
 
 #define BUFFERSIZE 255
-uint8_t ReceiveBuff[BUFFERSIZE];
+uint8_t UartReceiveBuff[BUFFERSIZE];
 uint8_t RX_len;
 volatile uint8_t receive_end_flag;
 extern DMA_HandleTypeDef hdma_usart1_rx;

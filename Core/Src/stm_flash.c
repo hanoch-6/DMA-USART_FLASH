@@ -23,6 +23,8 @@ static uint16_t STMFLASH_BUF[STM_SECTOR_SIZE / 2];
 static FLASH_EraseInitTypeDef EraseInitStruct;
 
 //**1K 有1024个字 我称为1页 一个字是32bit 半字就是16bit
+
+
 /**
  * @brief 读取指定地址的半字
  *
