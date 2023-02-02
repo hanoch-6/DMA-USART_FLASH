@@ -23,6 +23,7 @@
 #include "usart.h"
 #include "gpio.h"
 #include "stdio.h"
+#include "stm_flash.h"
 
 #ifdef __GNUC__
 
@@ -35,9 +36,17 @@
 #endif /* __GNUC__ */
 
 #define BUFFERSIZE 255
+#define FLASH_WriteAddress 0x08001400
+#define FLASH_TESTSIZE 64
+
+uint16_t Tx_Buffer[FLASH_TESTSIZE] = {0};
+uint16_t Rx_Buffer[FLASH_TESTSIZE] = {0};
+
 uint8_t UartReceiveBuff[BUFFERSIZE];
 uint8_t RX_len;
 volatile uint8_t receive_end_flag;
+volatile Status TransferStatus = FAILED;
+
 extern DMA_HandleTypeDef hdma_usart1_rx;
 extern UART_HandleTypeDef huart1;
 
@@ -53,7 +62,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
   {
     HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13); //     C13  ?  ?
     // flag=1;
-  } //  锟斤拷  ?  ?   1 锟斤拷 
+  } //
 }
 /* Private function prototypes -----------------------------------------------*/
 
@@ -65,27 +74,60 @@ void SystemClock_Config(void);
  */
 int main(void)
 {
+  uint16_t i;
   HAL_Init();
   SystemClock_Config();
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_USART1_UART_Init();
-  __HAL_UART_ENABLE_IT(&huart1, UART_IT_IDLE); //        ?    锟斤拷 
+  __HAL_UART_ENABLE_IT(&huart1, UART_IT_IDLE); //        ?    ??
   MX_USART2_UART_Init();
-  printf("I LOVE YOU\r\n");
+
+  for (i = 0; i < FLASH_TESTSIZE; ++i)
+  {
+    Tx_Buffer[i] = i;
+    Rx_Buffer[i] = 0;
+  }
+  printf("这是一个内部flash读写测试实验\n");
+
+  STMFLASH_Write(FLASH_WriteAddress, Tx_Buffer, FLASH_TESTSIZE);
+
+  HAL_Delay(1000);
+
+  STMFLASH_Read(FLASH_ReadAddress, Rx_Buffer, FLASH_TESTSIZE);
+  HAL_Delay(1000);
+  TransferStatus = Buffercmp(Tx_Buffer, Rx_Buffer, FLASH_TESTSIZE);
+
+  if (PASSED == TransferStatus)
+  {
+    printf("内部Flash测试成功\r\n");
+    
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, SET);
+  }
+  else
+  {
+    printf("内部flash测试失败\r");
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, RESET);
+  }
+  uint32_t sysclock = 0;
+  sysclock = HAL_RCC_GetSysClockFreq();
+
+  printf("当前时钟频率sysclock=%u", sysclock);
   while (1)
   {
-   // if (!receive_end_flag)
+    printf("接收到的数据：%02d\r\n", UartReceiveBuff[i]);
+    HAL_Delay(1000);
+    // if (!receive_end_flag)
     //{
-   //   for(int i = 0;i<strlen(ReceiveBuff);i++)
-   //     printf("RECEIVE DATA  %02d\r\n",ReceiveBuff[i]);
+    //   for(int i = 0;i<strlen(ReceiveBuff);i++)
+    //     printf("RECEIVE DATA  %02d\r\n",ReceiveBuff[i]);
     //}
   }
   /* USER CODE END 3 */
 }
 
 /**
- * @brief ? ? ?  
+ * @brief ? ? ?
  *
  */
 void SystemClock_Config(void)

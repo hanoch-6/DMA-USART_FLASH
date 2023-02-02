@@ -15,7 +15,6 @@
 #include "stm_flash.h"
 #include "stdio.h"
 
-static Status Buffercmp(uint16_t *pBuffer1, uint16_t *pBuffer2, uint16_t BufferLength);
 
 #define STM_SECTOR_SIZE 1024
 #define STM_FLASH_SIZE 64
@@ -128,7 +127,7 @@ void STMFLASH_Read(uint32_t ReadAddr, uint16_t *pBuffer, uint16_t NumToRead)
     }
 }
 
-static Status Buffercmp(uint16_t* pBuffer1, uint16_t* pBuffer2, uint16_t BufferLength)
+Status Buffercmp(uint16_t* pBuffer1, uint16_t* pBuffer2, uint16_t BufferLength)
 {
   while(BufferLength--)
   {

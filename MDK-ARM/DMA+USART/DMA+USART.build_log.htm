@@ -22,12 +22,38 @@ Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
 C:\Users\Hanoch\Documents\hanoch sync doc\personal_project\DMA+USART\KEIL\DMA+USART\MDK-ARM\DMA+USART.uvprojx
-Project File Date:  02/01/2023
+Project File Date:  02/02/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'DMA+USART'
-"DMA+USART\DMA+USART.axf" - 0 Error(s), 0 Warning(s).
+../Core/Src/main.c(91): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
+  printf("<D5><E2><CA><C7>һ<B8><F6><C4>ڲ<BF>flash<B6><C1>д<B2><E2><CA><D4>ʵ<D1><E9>\n");
+          ^~~~~~~~~~~~~~~~ ~~~~~~~~~~~~ ~~~~     ~~~~~~~~ ~~~~~~~~~~~~~~~~ ~~~~~~~~
+../Core/Src/main.c(103): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
+    printf("<C4>ڲ<BF>Flash<B2><E2><CA>Գɹ<A6>\r\n");
+            ^~~~ ~~~~     ~~~~~~~~~~~~  ~~~~
+../Core/Src/main.c(105): warning: implicit conversion from enumeration type 'FlagStatus' to different enumeration type 'GPIO_PinState' [-Wenum-conversion]
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, SET);
+    ~~~~~~~~~~~~~~~~~                     ^~~
+../Core/Src/main.c(109): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
+    printf("<C4>ڲ<BF>flash<B2><E2><CA><D4>ʧ<B0><DC>\r");
+            ^~~~ ~~~~     ~~~~~~~~~~~~~~~~ ~~~~~~~~
+../Core/Src/main.c(110): warning: implicit conversion from enumeration type 'FlagStatus' to different enumeration type 'GPIO_PinState' [-Wenum-conversion]
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, RESET);
+    ~~~~~~~~~~~~~~~~~                     ^~~~~
+../Core/Src/main.c(115): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
+  printf("<B5><B1>ǰʱ<D6><D3>Ƶ<C2><CA>sysclock=%u", sysclock);
+          ^~~~~~~~  ~~~~~~~~ ~~~~~~~~
+../Core/Src/main.c(118): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
+    printf("<BD><D3><CA>յ<BD><B5><C4><CA><FD><BE>ݣ<BA>%02d\r\n", UartReceiveBuff[i]);
+            ^~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~
+7 warnings generated.
+compiling main.c...
+linking...
+Program Size: Code=8972 RO-data=312 RW-data=16 ZI-data=2896  
+FromELF: creating hex file...
+"DMA+USART\DMA+USART.axf" - 0 Error(s), 7 Warning(s).
 
 <h2>Software Packages used:</h2>
 
